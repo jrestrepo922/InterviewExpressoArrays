@@ -214,13 +214,47 @@ var rotate = function(matrix){
 var twoSum = function(nums, target) {
     const potentialMatchHash = {}; 
     let potentialMatch; 
-    for(let i =0; i < nums.length; i++){ //TC: O(2N)
+    for(let i =0; i < nums.length; i++){ 
         potentialMatch = target - nums[i];
         if(potentialMatchHash[potentialMatch] !== undefined){
-            return [potentialMatchHash[potentialMatch], i] // TC: O(N)
+            return [potentialMatchHash[potentialMatch], i] 
         } else {
             potentialMatchHash[arr[i]] = i; 
         }
     }
     return false;
 };
+
+
+
+/*************************
+ * Three Sum 
+ ************************/
+var threeSum = function(nums){
+    const output = []; 
+    nums.sort((a,b) => a -b); 
+    for(let i = 0; i < nums.length - 2; i++){
+        let left = i + 1; 
+        let right = nums.length - 1; 
+        if(i > 0 && nums[i] === nums[i - 1]) continue;
+        while(left < right){
+            let total = nums[i] + nums[left] + nums[right]
+            if(total === 0){
+                output.push(nums[i], nums[left], nums[right]);
+                while(left < right && nums[rigth - 1] === nums[right]){ 
+                    right--;
+                }
+                while(left < right && nums[left + 1] === nums[left]){ 
+                    left++
+                }
+                right--; 
+                left++; 
+            } else if(total > 0){
+                right--
+            } else {
+                left++
+            }
+        }
+    }
+    return output; 
+}
